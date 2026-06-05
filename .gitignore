@@ -1,0 +1,48 @@
+# === Java ===
+*.class
+*.log
+*.ctxt
+*.jar
+*.war
+*.ear
+
+# === Build ===
+target/
+build/
+out/
+
+# === Maven ===
+.mvn/
+!/.mvn/wrapper/maven-wrapper.jar
+
+# === Gradle ===
+.gradle/
+
+# === IntelliJ IDEA ===
+.idea/
+*.iml
+
+# === Eclipse ===
+.project
+.classpath
+.settings/
+
+# === VS Code ===
+.vscode/
+
+# === OS ===
+.DS_Store
+Thumbs.db
+
+# === Logs ===
+logs/
+*.log
+
+# === Env files ===
+.env
+.env.*
+
+# === Temporary files ===
+*.tmp
+*.swp
+``
