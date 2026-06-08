@@ -1,0 +1,114 @@
+services:
+  auth-db:
+    image: postgres:16
+    container_name: virtual-secretary-auth-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: auth_db
+      POSTGRES_USER: auth_user
+      POSTGRES_PASSWORD: auth_password
+    ports:
+      - "5434:5432"
+    volumes:
+      - auth_db_data:/var/lib/postgresql/data
+    networks:
+      - virtual-secretary-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U auth_user -d auth_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  servicos-db:
+    image: postgres:16
+    container_name: virtual-secretary-servicos-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: servicos_db
+      POSTGRES_USER: servicos_user
+      POSTGRES_PASSWORD: servicos_password
+    ports:
+      - "5435:5432"
+    volumes:
+      - servicos_db_data:/var/lib/postgresql/data
+    networks:
+      - virtual-secretary-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U servicos_user -d servicos_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  agenda-db:
+    image: postgres:16
+    container_name: virtual-secretary-agenda-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: agenda_db
+      POSTGRES_USER: agenda_user
+      POSTGRES_PASSWORD: agenda_password
+    ports:
+      - "5436:5432"
+    volumes:
+      - agenda_db_data:/var/lib/postgresql/data
+    networks:
+      - virtual-secretary-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U agenda_user -d agenda_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  notificacoes-db:
+    image: postgres:16
+    container_name: virtual-secretary-notificacoes-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: notificacoes_db
+      POSTGRES_USER: notificacoes_user
+      POSTGRES_PASSWORD: notificacoes_password
+    ports:
+      - "5437:5432"
+    volumes:
+      - notificacoes_db_data:/var/lib/postgresql/data
+    networks:
+      - virtual-secretary-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U notificacoes_user -d notificacoes_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: virtual-secretary-pgadmin
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@virtualsecretary.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+    ports:
+      - "5051:80"
+    depends_on:
+      auth-db:
+        condition: service_healthy
+      servicos-db:
+        condition: service_healthy
+      agenda-db:
+        condition: service_healthy
+      notificacoes-db:
+        condition: service_healthy
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    networks:
+      - virtual-secretary-network
+
+networks:
+  virtual-secretary-network:
+    driver: bridge
+
+volumes:
+  auth_db_data:
+  servicos_db_data:
+  agenda_db_data:
+  notificacoes_db_data:
+  pgadmin_data:
