@@ -1,0 +1,30 @@
+server:
+  port: 8084
+
+spring:
+  datasource:
+    url: jdbc:postgresql://notificacoes-db:5432/notificacoes_db
+    username: notificacoes_user
+    password: notificacoes_password
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+  flyway:
+    enabled: true
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          public-key-location: classpath:keys/public.pem
+
+logging:
+  level:
+    root: INFO
+
+app:
+  tenant:
+    claim: tenant_id
+    header: X-Tenant-Id

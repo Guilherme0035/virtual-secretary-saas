@@ -1,0 +1,28 @@
+server:
+  port: 8083
+
+spring:
+  datasource:
+    url: jdbc:postgresql://agenda-db:5432/agenda_db
+    username: agenda_user
+    password: agenda_password
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+  flyway:
+    enabled: true
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          public-key-location: classpath:keys/public.pem
+
+feign:
+  client:
+    servicos:
+      url: http://servicos-service:8082
+    notificacoes:
+      url: http://notificacoes-service:8084
