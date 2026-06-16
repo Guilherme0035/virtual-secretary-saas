@@ -19,12 +19,3 @@ spring:
       resourceserver:
         jwt:
           public-key-location: classpath:keys/public.pem
-
-logging:
-  level:
-    root: INFO
-
-app:
-  tenant:
-    claim: tenant_id
-    header: X-Tenant-Id

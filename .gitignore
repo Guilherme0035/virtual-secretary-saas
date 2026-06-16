@@ -1,10 +1,12 @@
+# ===========================================
+# virtual-secretary-saas — portfolio
+# ===========================================
+
 # === Java ===
 *.class
-*.log
 *.ctxt
-*.jar
-*.war
-*.ear
+hs_err_pid*
+replay_pid*
 
 # === Build ===
 target/
@@ -12,37 +14,52 @@ build/
 out/
 
 # === Maven ===
-.mvn/
-!/.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.jar
 
 # === Gradle ===
 .gradle/
 
-# === IntelliJ IDEA ===
+# === IDE ===
 .idea/
 *.iml
-
-# === Eclipse ===
+*.iws
+*.ipr
 .project
 .classpath
 .settings/
+.apt_generated
+.factorypath
+.springBeans
+.sts4-cache
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
 
-# === VS Code ===
+# === VS Code / Cursor ===
 .vscode/
+.cursor/
 
 # === OS ===
 .DS_Store
 Thumbs.db
+desktop.ini
 
 # === Logs ===
 logs/
 *.log
 
-# === Env files ===
+# === Ambiente local e segredos ===
 .env
 .env.*
+**/application-local.yml
+**/keys/private.pem
 
-# === Temporary files ===
+# === Spring Boot (gerado automaticamente) ===
+HELP.md
+
+# === Temporários ===
 *.tmp
 *.swp
-``
+*~
