@@ -1,35 +1,58 @@
+# ===========================================
+# Notificacoes — portfólio (subir só o essencial)
+# ===========================================
+# Vai pro GitHub: código, pom.xml, mvnw, testes,
+# application.properties, application-dev.yml (exemplo Docker)
+#
+# Fica só na máquina: configs locais, segredos, build, IDE
+
+# === Spring Boot (gerado automaticamente) ===
 HELP.md
+
+# === Ambiente local e segredos ===
+.env
+.env.*
 **/application-local.yml
 **/keys/private.pem
+
+# === Build ===
 target/
-.mvn/wrapper/maven-wrapper.jar
+build/
 !**/src/main/**/target/
 !**/src/test/**/target/
+!**/src/main/**/build/
+!**/src/test/**/build/
 
-### STS ###
+# === Maven ===
+.mvn/wrapper/maven-wrapper.jar
+
+# === Logs ===
+logs/
+*.log
+
+# === IDE ===
+.idea/
+*.iws
+*.iml
+*.ipr
 .apt_generated
 .classpath
 .factorypath
 .project
-.settings
+.settings/
 .springBeans
 .sts4-cache
-
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-
-### NetBeans ###
 /nbproject/private/
 /nbbuild/
 /dist/
 /nbdist/
 /.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
 
-### VS Code ###
+# === VS Code / Cursor ===
 .vscode/
+.cursor/
+
+# === OS ===
+.DS_Store
+Thumbs.db
+desktop.ini
